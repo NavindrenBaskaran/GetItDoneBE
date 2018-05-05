@@ -13,6 +13,8 @@
 class User < ApplicationRecord
   include BCrypt
 
+  validates_with EmailValidator
+
   def password
     @password ||= Password.new(password_hash)
   end
