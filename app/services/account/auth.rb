@@ -9,8 +9,7 @@ module Account
       @user = User.find_by! email: email.downcase
       raise 'Invalid Email/Password' unless @user.password == password
 
-      expiration_date = Time.current.to_i * 3 * 60 * 60
-      payload = { user_id: @user.id, exp: expiration_date }
+      payload = Account::DefaultPayload.payload(user: user)
       jwt_token = JwtHelper.encode(payload: payload)
 
       response(success: true, response: { token: jwt_token }, error: nil)
