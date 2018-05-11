@@ -21,7 +21,7 @@ module Account
       payload, _header = JwtHelper.decode(token: token)
       @current_user = User.find_by! id: payload['user_id']
 
-      response(success: false, response: @current_user, error: nil)
+      response(success: true, response: @current_user, error: nil)
     rescue JWT::ExpiredSignature, RuntimeError, ActiveRecord::RecordNotFound => e
       response(success: false, response: nil, error: e.message)
     end
