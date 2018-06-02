@@ -1,0 +1,2 @@
+class WeakPasswordError < StandardError
+end
