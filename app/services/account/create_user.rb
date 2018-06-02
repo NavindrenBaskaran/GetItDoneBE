@@ -9,13 +9,11 @@ module Account
     end
 
     def call
-      create_user
-      issue_jwt_token
-      response(success: true, response: success_response, error: nil)
-    rescue ActiveRecord::RecordNotUnique
-      response(success: false, response: @user, error: 'Email is taken!')
-    rescue RuntimeError, ActiveRecord::ActiveRecordError => e
-      response(success: false, response: @user, error: e.message)
+      ActiveRecord::Base.transaction do
+        create_user
+        issue_jwt_token
+        response(success: true, response: success_response, message: 'Account created!')
+      end
     end
 
     private
