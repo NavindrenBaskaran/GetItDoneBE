@@ -1,5 +1,5 @@
 module ServiceResponse
-  def response(success:, response:, error:)
-    OpenStruct.new(success?: success, response: response, error: error)
+  def response(success:, response:, message:)
+    OpenStruct.new(success?: success, response: response, message: message)
   end
 end
