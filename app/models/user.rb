@@ -30,12 +30,14 @@ class User < ApplicationRecord
   private
 
   def valid_email?
-    errors.add(:email, 'Invalid Email!') unless email =~ EMAIL_REGEX
+    return true if email =~ EMAIL_REGEX
+    errors.add(:email, 'Invalid Email!')
+    raise InvalidEmailFormatError, 'Invalid Email!'
   end
 
   def valid_password?(password)
     return true if password =~ PASSWORD_REGEX
-    raise password_error
+    raise WeakPasswordError, password_error
   end
 
   def password_error
