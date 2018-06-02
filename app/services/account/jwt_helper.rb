@@ -8,7 +8,7 @@ module Account
 
     def self.decode(token:, secret: Rails.application.secrets.secret_key_base,
       algo: 'HS256')
-      JWT.decode(token, secret, true, algorithms: algo, )
+      JWT.decode(token, secret, true, algorithms: algo)
     end
   end
 end
