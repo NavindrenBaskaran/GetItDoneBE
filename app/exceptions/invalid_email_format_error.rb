@@ -1,0 +1,2 @@
+class InvalidEmailFormatError < StandardError
+end
