@@ -13,8 +13,7 @@ module Client
 
         post :auth do
 
-          response = Account::Auth.authenticate_user(email: params[:email],
-                                                     password:  params[:password])
+          response = Account::Auth.authenticate_user(email: params[:email], password:  params[:password])
 
           { status: 200, token: response.response[:jwt_token], response: response.message }
         end

@@ -20,8 +20,7 @@ module Client
           response = Account::CreateUser.new(name: name,
                                              email: email,
                                              password: password).call
-
-          { status: 200, token: response.response[:jwt_token], response: response.message}
+          { status: 200, token: response.response[:jwt_token], response: response.message }
         end
       end
     end
